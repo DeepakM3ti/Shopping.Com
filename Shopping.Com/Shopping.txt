@@ -1,0 +1,843 @@
+USE [MyShop]
+GO
+/****** Object:  Table [dbo].[BillMaster]    Script Date: 21-02-2024 13:26:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BillMaster](
+	[BillId] [int] NOT NULL,
+	[CId] [int] NULL,
+	[DateOfSale] [varchar](50) NULL,
+	[PaymentMode] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[BillId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CategoryList]    Script Date: 21-02-2024 13:26:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CategoryList](
+	[catid] [int] NOT NULL,
+	[Category] [varchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[catid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Customers]    Script Date: 21-02-2024 13:26:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Customers](
+	[Cid] [int] NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Email] [varchar](50) NULL,
+	[Mobile] [bigint] NULL,
+	[Address] [varchar](100) NULL,
+	[Password] [varchar](50) NULL,
+	[Statusid] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Cid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PaymentMode]    Script Date: 21-02-2024 13:26:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PaymentMode](
+	[modeId] [int] NOT NULL,
+	[Mode] [varchar](30) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[modeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ProductMaster]    Script Date: 21-02-2024 13:26:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ProductMaster](
+	[Pid] [int] NOT NULL,
+	[Product] [varchar](100) NOT NULL,
+	[PImage] [int] NULL,
+	[Catid] [int] NULL,
+	[VendorId] [int] NULL,
+	[Quantity] [int] NULL,
+	[Price] [money] NULL,
+	[ProfitPercentage] [numeric](5, 2) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Pid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Sales]    Script Date: 21-02-2024 13:26:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Sales](
+	[pid] [int] NULL,
+	[quantity] [int] NULL,
+	[billid] [int] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Vendors]    Script Date: 21-02-2024 13:26:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Vendors](
+	[Vendorid] [int] NOT NULL,
+	[Vendor] [varchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Vendorid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (1, 1, N'2016-10-29', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (2, 2, N'2016-10-29', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (3, 3, N'2017-11-03', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (4, 4, N'2017-11-03', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (5, 5, N'2017-11-03', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (6, 6, N'2018-12-04', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (7, 7, N'2018-10-30', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (8, 7, N'2018-10-30', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (9, 7, N'2018-10-30', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (10, 1, N'2019-02-25', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (11, 2, N'2019-02-25', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (12, 3, N'2019-07-29', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (13, 4, N'2019-07-29', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (14, 3, N'2019-07-29', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (15, 3, N'2019-07-29', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (16, 3, N'2019-07-29', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (17, 2, N'2019-07-29', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (18, 1, N'2019-10-10', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (19, 1, N'2019-10-10', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (20, 3, N'2020-01-16', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (21, 4, N'2020-01-17', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (22, 5, N'2020-01-17', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (23, 6, N'2020-03-09', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (24, 7, N'2020-03-09', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (25, 7, N'2020-03-09', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (26, 1, N'2020-07-03', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (27, 2, N'2020-07-03', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (28, 3, N'2020-07-03', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (29, 3, N'2020-07-03', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (30, 3, N'2020-07-03', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (31, 4, N'2020-07-03', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (32, 4, N'2020-07-03', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (33, 4, N'2020-07-23', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (34, 1, N'2020-08-10', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (35, 1, N'2020-08-10', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (36, 2, N'2020-09-06', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (37, 7, N'2020-09-11', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (38, 7, N'2020-09-11', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (39, 1, N'2020-09-11', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (40, 8, N'2020-09-11', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (41, 7, N'2020-09-15', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (42, 7, N'2020-09-15', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (43, 5, N'2020-11-03', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (44, 4, N'2020-11-03', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (45, 3, N'2020-11-12', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (46, 1, N'2021-01-15', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (47, 1, N'2021-01-15', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (48, 1, N'2021-01-15', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (49, 2, N'2021-03-12', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (50, 2, N'2021-03-12', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (51, 3, N'2021-03-12', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (52, 3, N'2021-04-02', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (53, 5, N'2021-04-02', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (54, 6, N'2021-08-24', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (55, 1, N'2021-08-24', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (56, 7, N'2021-08-24', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (57, 1, N'2021-08-24', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (58, 1, N'2019-01-01', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (59, 2, N'2021-09-16', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (60, 2, N'2021-09-16', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (61, 2, N'2021-11-10', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (62, 1, N'2022-01-18', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (63, 1, N'2022-01-18', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (64, 7, N'12-10-2022', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (65, 7, N'12-10-2022', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (66, 1, N'Oct 13 2022 10:05AM', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (67, 1, N'Oct 13 2022 10:06AM', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (68, 7, N'Dec  3 2022 12:35PM', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (69, 7, N'Dec  3 2022 12:38PM', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (70, 1, N'Jan  5 2023 10:13AM', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (71, 1, N'Jan  5 2023 10:24AM', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (72, 7, N'Apr 15 2023 10:57AM', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (73, 7, N'Apr 15 2023 11:05AM', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (74, 5, N'Aug  8 2023 11:24AM', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (75, 5, N'Aug  8 2023 11:28AM', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (76, 5, N'Aug  8 2023 11:29AM', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (77, 7, N'Aug  8 2023 12:02PM', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (78, 7, N'Aug  8 2023 12:03PM', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (79, 5, N'Aug  8 2023 12:06PM', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (80, 7, N'Sep 25 2023 10:04AM', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (81, 7, N'Sep 25 2023 10:04AM', 1)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (82, 7, N'Sep 25 2023 11:39AM', 3)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (83, 5, N'Jan  2 2024 10:50AM', 2)
+GO
+INSERT [dbo].[BillMaster] ([BillId], [CId], [DateOfSale], [PaymentMode]) VALUES (84, 4, N'Jan 19 2024  3:16PM', 3)
+GO
+INSERT [dbo].[CategoryList] ([catid], [Category]) VALUES (3, N'Apparels')
+GO
+INSERT [dbo].[CategoryList] ([catid], [Category]) VALUES (9, N'Computers')
+GO
+INSERT [dbo].[CategoryList] ([catid], [Category]) VALUES (7, N'Education')
+GO
+INSERT [dbo].[CategoryList] ([catid], [Category]) VALUES (2, N'Entertainment')
+GO
+INSERT [dbo].[CategoryList] ([catid], [Category]) VALUES (4, N'Footwear')
+GO
+INSERT [dbo].[CategoryList] ([catid], [Category]) VALUES (8, N'Furniture')
+GO
+INSERT [dbo].[CategoryList] ([catid], [Category]) VALUES (5, N'Home Appliances')
+GO
+INSERT [dbo].[CategoryList] ([catid], [Category]) VALUES (1, N'Mobiles')
+GO
+INSERT [dbo].[CategoryList] ([catid], [Category]) VALUES (6, N'Toys')
+GO
+INSERT [dbo].[Customers] ([Cid], [Name], [Email], [Mobile], [Address], [Password], [Statusid]) VALUES (1, N'Charles', N'charles.anthony@excelindia.com', 8884191644, N'Mysore', N'anto', 1)
+GO
+INSERT [dbo].[Customers] ([Cid], [Name], [Email], [Mobile], [Address], [Password], [Statusid]) VALUES (2, N'Vinutha', N'charles@gmail.com', 8884191655, N'Mysore', N'anto', 1)
+GO
+INSERT [dbo].[Customers] ([Cid], [Name], [Email], [Mobile], [Address], [Password], [Statusid]) VALUES (3, N'Mathew', N'sakamma@gmail.com', 9972838085, N'Gundulpet', N'mat123', 1)
+GO
+INSERT [dbo].[Customers] ([Cid], [Name], [Email], [Mobile], [Address], [Password], [Statusid]) VALUES (4, N'Shruthi', N'charlesantoni@gmail.com', 9972916443, N'Mysore', N'anto', 1)
+GO
+INSERT [dbo].[Customers] ([Cid], [Name], [Email], [Mobile], [Address], [Password], [Statusid]) VALUES (5, N'Sindhu', N'sindhu@excelindia.com', 6789543212, N'Bangalore', N'sindhu', 1)
+GO
+INSERT [dbo].[Customers] ([Cid], [Name], [Email], [Mobile], [Address], [Password], [Statusid]) VALUES (6, N'Sai Charan', N'saic@excelindia.com', 7891234567, N'Mysore', N'saic', 1)
+GO
+INSERT [dbo].[Customers] ([Cid], [Name], [Email], [Mobile], [Address], [Password], [Statusid]) VALUES (7, N'Nithin', N'nithin@excelindia.com', 9875673211, N'Mysore', N'nithin', 1)
+GO
+INSERT [dbo].[Customers] ([Cid], [Name], [Email], [Mobile], [Address], [Password], [Statusid]) VALUES (8, N'Umme Banu', N'ummebanu@excelindia.com', 9443203561, N'Gundulpet', N'ummeb', 1)
+GO
+INSERT [dbo].[Customers] ([Cid], [Name], [Email], [Mobile], [Address], [Password], [Statusid]) VALUES (9, N'Upendra', N'uppi@excelindia.com', 9654789012, N'Bangalore', N'upen', 1)
+GO
+INSERT [dbo].[Customers] ([Cid], [Name], [Email], [Mobile], [Address], [Password], [Statusid]) VALUES (10, N'Nateeqa Sultana', N'nateqa@excelindia.com', 7980899901, N'Mandya', N'natwest', 1)
+GO
+INSERT [dbo].[PaymentMode] ([modeId], [Mode]) VALUES (3, N'COD')
+GO
+INSERT [dbo].[PaymentMode] ([modeId], [Mode]) VALUES (2, N'Credit Card')
+GO
+INSERT [dbo].[PaymentMode] ([modeId], [Mode]) VALUES (1, N'Debit Card')
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (1, N'JBL Earphone', 1, 1, 10, 0, 7999.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (2, N'Samsung A 70', 2, 1, 1, 0, 5000.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (3, N'Samsung LCD Televison', 3, 2, 1, 0, 34000.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (4, N'Apple LED Television', 4, 2, 9, 0, 65000.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (5, N'Samsung Grand 2', 5, 1, 1, 0, 16000.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (6, N'Samsung note 5 ', 6, 1, 1, 0, 34000.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (7, N'Samsung Star', 7, 1, 1, 0, 7600.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (8, N'Lumia 620', 8, 1, 10, 14, 8999.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (9, N'Nokia X', 9, 1, 9, 6, 4500.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (10, N'Microsoft 1020', 10, 1, 10, 0, 32000.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (11, N'Sports Shoe', 11, 4, 8, 0, 3455.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (12, N'Running Shoes', 12, 4, 8, 0, 2345.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (14, N'Tennis Shoes', 14, 4, 4, 0, 3455.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (15, N'Floatters', 15, 4, 5, 27, 999.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (17, N'Sandals', 15, 4, 5, 7, 999.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (18, N'Shoes formals', 15, 4, 3, 18, 2999.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (19, N'Philips Rice cooker', NULL, 5, NULL, 0, 1780.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (21, N'Rice cooker', 21, 4, 1, 12, 1700.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (22, N'Refigirator', 21, 2, 1, 0, 21000.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (23, N'Mixer Grider', 21, 4, 1, 10, 3500.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (24, N'Mixer Grider', 21, 4, 10, 10, 3500.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (26, N'Sony Bravia Television', 1, 4, 10, 0, 25000.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (27, N'Mi Note 8', 1, 1, 11, 25, 12000.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (28, N'MI Note 9 pro', 1, 1, 11, 25, 15000.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (30, N'SAmsung 10', 1, 1, 1, 6, 35000.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (31, N'Mi note 9', 1, 1, 11, 0, 15000.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (32, N'Philips Mobile', 1, 1, 3, 23, 15000.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (33, N'Google Home', NULL, 1, 1, 10, 4200.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (34, N'iPad', NULL, 9, 9, 7, 43000.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (35, N'Soundbar', NULL, 2, 14, 0, 12000.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (36, N'Soundbar', NULL, 2, 14, 0, 12000.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (37, N'Mobile', NULL, 2, 1, 4, 23000.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (38, N'Trousers', NULL, 3, 7, 78, 499.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (39, N'Bed Spreads', NULL, 3, 7, 1196, 799.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (40, N'Towels', NULL, 3, 7, 46, 199.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (41, N'Sarees', NULL, 3, 7, 50, 199.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (43, N'LED Television', NULL, 2, 2, 3, 49000.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (44, N'Home Theatre', NULL, 2, 2, 0, 9000.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (45, N'HeadPhones', NULL, 2, 2, 10, 1900.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (46, N'HeadPhones', NULL, 2, 2, 10, 1900.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (47, N'Portable Speakers', NULL, 2, 1, 5, 3900.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (48, N'Portable Speakers', NULL, 2, 10, 5, 1890.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (49, N'Formal Shoes', NULL, 4, 5, 10, 1999.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (50, N'Casual Shoes', NULL, 4, 5, 25, 999.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (52, N'Kids Party Shoes', NULL, 4, 5, 10, 699.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (54, N'Kids Party Shoes girls', NULL, 4, 5, 10, 699.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (55, N'Baby Shoes', NULL, 4, 5, 10, 699.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (56, N'Part Wear Boys', NULL, 4, 5, 20, 499.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (57, N'Visual Baisc', NULL, 7, 10, 1, 2499.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (58, N'MVC 5.0', NULL, 7, 10, 28, 1000.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (59, N'Entity Framework', NULL, 7, 10, 8, 0.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (60, N'Asp.Net Core', NULL, 7, 10, 10, 1000.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (61, N'Asp.Net Core 2.0', NULL, 7, 10, 0, 1100.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (62, N'Database Management System', NULL, 7, 10, 29, 1000.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (63, N'Visual Basic', NULL, 7, 10, 164, 2499.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (64, N'Angular 7', NULL, 4, 10, 7, 340.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (65, N'Angular 8', NULL, 4, 10, 7, 234.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (66, N'Oracle', NULL, 4, 10, 7, 1021.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (67, N'Sharepoint Poratl server', NULL, 4, 10, 7, 2034.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (69, N'Sharepoint Poratl ', NULL, 4, 10, 4, 211.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (70, N'Xamarin Advanced ', NULL, 4, 10, 7, 234.0000, CAST(7.50 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (71, N'C sharp Basics', NULL, 7, 10, 7, 1223.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (72, N'Demo', NULL, NULL, 1, 7, 34000.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (73, N'HeadPhones', NULL, 2, 9, 7, 2100.0000, CAST(13.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (74, N'Macbook', NULL, 1, 9, 9, 120000.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (76, N'Earpods', NULL, 1, 1, 10, 1200.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (79, N'IPod', NULL, 1, 9, 0, 7000.0000, CAST(24.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (80, N'Bedspared', NULL, 3, 6, 7, 899.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (81, N'Shirt', NULL, 3, 6, 6, 789.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (82, N'Track Pants', NULL, 3, 8, 0, 3210.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (84, N'Sports Pants', NULL, 3, 7, 3, 1022.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (85, N'Wind Cheater', NULL, 3, 6, 3, 2000.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (86, N'Baby Towel', NULL, 3, 7, 3, 899.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (87, N'Ladies Top', NULL, 3, 7, 2, 1023.0000, CAST(10.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (90, N'MVC', 1, 1, 1, 1, 1000.0000, CAST(20.00 AS Numeric(5, 2)))
+GO
+INSERT [dbo].[ProductMaster] ([Pid], [Product], [PImage], [Catid], [VendorId], [Quantity], [Price], [ProfitPercentage]) VALUES (91, N'Charger', NULL, NULL, NULL, 31, 1999.0000, NULL)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (4, 2, 1)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (9, 1, 1)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 1, 3)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (18, 1, 3)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (3, 3, 3)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (17, 3, 4)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (3, 3, 5)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (7, 1, 6)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (3, 1, 6)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (14, 2, 6)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (11, 1, 7)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (4, 2, 8)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (6, 1, 8)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (18, 1, 8)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (12, 3, 9)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (4, 1, 9)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 1, 10)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 3, 11)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (14, 4, 11)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (4, 1, 11)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 5, 13)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 18, 14)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 25, 15)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (4, 4, 16)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (4, 5, 17)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 2, 18)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 1, 18)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (3, 1, 18)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (4, 2, 18)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 2, 19)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 1, 19)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (3, 1, 19)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (4, 2, 19)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (12, 1, 20)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (6, 1, 20)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (3, 2, 20)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 14, 21)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 6, 22)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 10, 23)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 10, 24)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (3, 12, 25)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 7, 26)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 5, 27)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 5, 28)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (3, 2, 29)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (3, 4, 30)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (7, 3, 31)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (11, 6, 32)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (11, 4, 33)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (12, 5, 33)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (14, 2, 33)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (4, 1, 33)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (6, 2, 33)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (60, 5, 33)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (63, 7, 33)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (55, 10, 33)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (8, 2, 58)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (6, 10, 59)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (10, 10, 34)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 17, 35)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 10, 36)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (12, 3, 37)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (58, 1, 37)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (12, 3, 38)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (58, 1, 38)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (12, 3, 39)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (58, 1, 39)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (11, 3, 39)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (17, 6, 39)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 2, 40)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (14, 5, 40)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (17, 10, 41)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (4, 4, 42)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (61, 20, 42)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 4, 43)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (5, 15, 44)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (5, 3, 45)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (28, 4, 46)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (48, 3, 47)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (27, 2, 48)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (5, 1, 49)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (26, 2, 49)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 1, 50)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (2, 1, 50)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (6, 14, 51)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (7, 1, 51)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (73, 3, 52)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (14, 6, 52)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (32, 3, 52)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (18, 3, 52)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (57, 4, 52)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (32, 10, 53)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (3, 1, 53)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (31, 10, 53)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (18, 10, 53)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (4, 1, 54)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (5, 1, 55)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (10, 1, 56)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (9, 2, 57)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (11, 1, 60)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (44, 1, 61)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (14, 4, 61)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (12, 1, 62)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (6, 5, 63)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (15, 2, 2)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (6, 3, 2)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (10, 5, 2)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (3, 1, 2)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (11, 3, 38)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (17, 6, 38)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (14, 6, 48)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (43, 1, 48)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (38, 5, 64)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (57, 2, 64)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (34, 1, 65)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (35, 1, 68)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (43, 2, 69)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (17, 1, 69)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (6, 1, 70)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (6, 1, 71)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (36, 1, 72)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (43, 2, 72)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (15, 4, 74)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (17, 3, 74)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (39, 1, 79)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 4, 80)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 4, 81)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 1, 82)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 1, 83)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (9, 3, 83)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (18, 4, 84)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (40, 1, 84)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (30, 4, 84)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (57, 3, 69)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (38, 1, 79)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (37, 1, 73)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (43, 1, 73)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (38, 1, 77)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (15, 1, 78)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (17, 1, 78)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (1, 1, 66)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (8, 10, 67)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (38, 1, 75)
+GO
+INSERT [dbo].[Sales] ([pid], [quantity], [billid]) VALUES (15, 2, 76)
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (8, N'Addidas')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (9, N'Apple')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (7, N'Bombay Dyeing')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (10, N'Microsoft')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (21, N'Mysore')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (4, N'Nike')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (2, N'Philips')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (3, N'Puma')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (1, N'Samsung')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (14, N'Sony')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (5, N'Trial')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (6, N'Vipul')
+GO
+INSERT [dbo].[Vendors] ([Vendorid], [Vendor]) VALUES (11, N'Xiomi')
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Category__4BB73C323DB95173]    Script Date: 21-02-2024 13:26:43 ******/
+ALTER TABLE [dbo].[CategoryList] ADD UNIQUE NONCLUSTERED 
+(
+	[Category] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__PaymentM__2488AC263954CDE6]    Script Date: 21-02-2024 13:26:43 ******/
+ALTER TABLE [dbo].[PaymentMode] ADD UNIQUE NONCLUSTERED 
+(
+	[Mode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Vendors__42A527B20D5E0692]    Script Date: 21-02-2024 13:26:43 ******/
+ALTER TABLE [dbo].[Vendors] ADD UNIQUE NONCLUSTERED 
+(
+	[Vendor] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ProductMaster] ADD  CONSTRAINT [defq]  DEFAULT ((0)) FOR [Quantity]
+GO
+ALTER TABLE [dbo].[BillMaster]  WITH CHECK ADD FOREIGN KEY([PaymentMode])
+REFERENCES [dbo].[PaymentMode] ([modeId])
+GO
+ALTER TABLE [dbo].[BillMaster]  WITH CHECK ADD FOREIGN KEY([CId])
+REFERENCES [dbo].[Customers] ([Cid])
+GO
+ALTER TABLE [dbo].[Customers]  WITH CHECK ADD FOREIGN KEY([Statusid])
+REFERENCES [dbo].[StatusMaster] ([Statusid])
+GO
+ALTER TABLE [dbo].[ProductMaster]  WITH CHECK ADD FOREIGN KEY([Catid])
+REFERENCES [dbo].[CategoryList] ([catid])
+GO
+ALTER TABLE [dbo].[ProductMaster]  WITH CHECK ADD FOREIGN KEY([VendorId])
+REFERENCES [dbo].[Vendors] ([Vendorid])
+GO
+ALTER TABLE [dbo].[Sales]  WITH CHECK ADD  CONSTRAINT [fkbillid] FOREIGN KEY([billid])
+REFERENCES [dbo].[BillMaster] ([BillId])
+GO
+ALTER TABLE [dbo].[Sales] CHECK CONSTRAINT [fkbillid]
+GO
+ALTER TABLE [dbo].[Sales]  WITH CHECK ADD  CONSTRAINT [fkpid] FOREIGN KEY([pid])
+REFERENCES [dbo].[ProductMaster] ([Pid])
+GO
+ALTER TABLE [dbo].[Sales] CHECK CONSTRAINT [fkpid]
+GO
+ALTER TABLE [dbo].[Sales]  WITH CHECK ADD  CONSTRAINT [chkqty] CHECK  (([quantity]>(0)))
+GO
+ALTER TABLE [dbo].[Sales] CHECK CONSTRAINT [chkqty]
+GO
